@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 import pandas as pd
 
-def parse_logs(log_file: str = "/opt/airflow/dags/viqube_api_mini.txt", output_csv: str = "parsed_logs.csv"):
+def parse_logs(log_file: str = "/opt/airflow/dags/viqube_api.txt", output_csv: str = "parsed_logs.csv"):
     logging.basicConfig(filename='log_parser_errors.log', level=logging.ERROR)
 
     requests = {}
