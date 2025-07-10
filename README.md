@@ -15,4 +15,4 @@ docker-compose up -d _(необязательно)_
 
 запуск происходит на localhost8080\
 пользователь airflow\
-пароль airflow \
+пароль airflow
