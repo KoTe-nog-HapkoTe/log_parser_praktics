@@ -1,7 +1,8 @@
+# airflow
 git clone https://github.com/apache/airflow _(клонирование репозитория airflow)_
 
 # docker
-при разработке и отладке использовался docker. В слуучае исрользования linux можно инициализировать airflow напрямую
+при разработке и отладке использовался docker. В слуучае исрользования linux можно инициализировать airflow напрямую;
 Если запускать на windows автоматически будет установленно wsl 
 
 # Перед запуском 
@@ -12,6 +13,6 @@ cd .\airflow\
 docker-compose up airflow-init
 docker-compose up -d _(необязательно)_
 
-запуск происходит на localhost8080
-пользователь airflow
+запуск происходит на localhost8080;
+пользователь airflow;
 пароль airflow
