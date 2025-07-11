@@ -5,7 +5,7 @@ from sqlalchemy.dialects.postgresql import ARRAY, BOOLEAN
 from sqlalchemy.orm import sessionmaker
 import pandas as pd
 
-DATABASE_URL = "postgresql+psycopg2://postgres:1234@host.docker.internal:5432/log_analytics"
+DATABASE_URL = "postgresql+psycopg2://postgres:{password}@host.docker.internal:{port}/log_analytics"
 TABLE_NAME = "log_analytics"
 
 Base = declarative_base()
