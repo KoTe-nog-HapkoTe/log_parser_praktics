@@ -18,7 +18,7 @@ default_args = {
 with DAG(
     dag_id='log_parser_hourly',
     default_args=default_args,
-    description='Парсинг логов → агрегация → загрузка в PostgreSQL',
+    description='Парсинг логов -> агрегация -> загрузка в PostgreSQL',
     schedule_interval='@hourly',    # каждый час
     #schedule_interval='*/5 * * * *',   # каждые 5 мин
     start_date=datetime(2025, 1, 1),
@@ -41,15 +41,21 @@ with DAG(
     # Шаг 3: Агрегация и загрузка в PostgreSQL
     def aggregate_and_upload():
         df = aggregar()
-        upload_to_postgres_orm(df)
+    upload_to_postgres_orm(df)
 
-        calendar_df = build_hourly_calendar(df)
-        upload_user_activity_calendar(calendar_df)
+    today = date.today()
+    past_data = df[df["date"] < today]
 
+    if past_data.empty:
+        print("[calendar] Нет завершённых дней для вставки.")
+        return
+
+    calendar_df = build_hourly_calendar(past_data)
+    upload_user_activity_calendar(calendar_df)
+    
     agg_upload = PythonOperator(
         task_id='aggregate_and_upload',
         python_callable=aggregate_and_upload
     )
 
-    # Зависимости
     init_db >> parse >> agg_upload
